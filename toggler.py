@@ -25,7 +25,7 @@ def get_toggle(toggle):
     else:
         return 'false'
 
-@app.get('/set/<toggle>/<value>/<passkey>')
+@app.route('/set/<toggle>/<value>/<passkey>', methods=['GET', 'POST'])
 def set_toggle(toggle, value, passkey):
     """Set the value of a toggle (if the passkey matches the PASSKEY env var)."""
     if passkey != PASSKEY:
