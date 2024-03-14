@@ -11,8 +11,10 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-PASSKEY = os.environ['PASSKEY']
 TOGGLES_DIR = path.join(path.dirname(path.realpath(__file__)), r'toggles')
+
+with open(path.join(path.dirname(path.realpath(__file__)), r'PASSKEY'), 'r', -1, 'utf-8') as f:
+    PASSKEY = f.readlines()[0].strip()
 
 @app.get('/toggle/get/<toggle>')
 def get_toggle(toggle):
