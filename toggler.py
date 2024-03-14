@@ -16,7 +16,7 @@ TOGGLES_DIR = path.join(path.dirname(path.realpath(__file__)), r'toggles')
 with open(path.join(path.dirname(path.realpath(__file__)), r'PASSKEY'), 'r', -1, 'utf-8') as f:
     PASSKEY = f.readlines()[0].strip()
 
-@app.get('/toggle/get/<toggle>')
+@app.get('/get/<toggle>')
 def get_toggle(toggle):
     """Get the value of a toggle (if the passkey matches the PASSKEY env var)."""
     toggle_path = path.join(TOGGLES_DIR, toggle)
@@ -25,7 +25,7 @@ def get_toggle(toggle):
     else:
         return 'false'
 
-@app.get('/toggle/set/<toggle>/<value>/<passkey>')
+@app.get('/set/<toggle>/<value>/<passkey>')
 def set_toggle(toggle, value, passkey):
     """Set the value of a toggle (if the passkey matches the PASSKEY env var)."""
     if passkey != PASSKEY:
